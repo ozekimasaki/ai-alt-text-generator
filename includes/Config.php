@@ -62,6 +62,7 @@ class Config {
         $provider_map = [
             'gemini' => __NAMESPACE__ . '\\GeminiProvider',
             'openai' => __NAMESPACE__ . '\\OpenAIProvider',
+            'claude' => __NAMESPACE__ . '\\ClaudeProvider',
         ];
 
         return $provider_map[$provider_id] ?? $provider_map[Constants::DEFAULT_PROVIDER];
@@ -103,6 +104,9 @@ class Config {
             }
             if ( 'openai' === $provider ) {
                 return Constants::DEFAULT_MODEL_OPENAI;
+            }
+            if ( 'claude' === $provider ) {
+                return Constants::DEFAULT_MODEL_CLAUDE;
             }
         }
         return $model;

@@ -7,6 +7,7 @@ AI を用いて、WordPress にアップロードされた画像の代替テキ�
 -   **マルチプロバイダー対応**:
     -   Google Gemini
     -   OpenAI
+    -   Anthropic Claude
 -   **最新AIモデルの利用**: 各プロバイダーが提供する高性能な画像認識モデルを選択できます。
 -   **簡単な操作**:
     -   メディアライブラリの画像リストや、画像詳細画面からワンクリックで代替テキストを生成できます。
@@ -44,12 +45,13 @@ AI を用いて、WordPress にアップロードされた画像の代替テキ�
 
 1.  WordPress管理画面の `設定 > AI Alt Text` に移動します。
 2.  **AI プロバイダーの選択**:
-    -   使用したいAIサービス（`Google Gemini` または `OpenAI`）を選択します。
+    -   使用したいAIサービス（`Google Gemini`、`OpenAI`、または `Anthropic Claude`）を選択します。
     -   **注意**: プロバイダーを選択するとページが一度リロードされ、選択したプロバイダーに応じた設定項目が表示されます。
 3.  **APIキーの入力**:
     -   各サービスの公式サイトで取得したAPIキーを入力してください。
         -   **Google Gemini**: [Google AI Studio](https://aistudio.google.com/app/apikey?hl=ja)
         -   **OpenAI**: [OpenAI Platform](https://platform.openai.com/api-keys)
+        -   **Anthropic Claude**: [Anthropic Console](https://console.anthropic.com/)
 4.  **モデルの選択**:
     -   代替テキスト生成に使用したいAIモデルを選択します。
 5.  **設定を保存**:

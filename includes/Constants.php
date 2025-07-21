@@ -22,6 +22,7 @@ class Constants {
     // AI API
     public const DEFAULT_MODEL_GEMINI   = 'models/gemini-2.5-flash-lite-preview-06-17';
     public const DEFAULT_MODEL_OPENAI   = 'gpt-4.1-mini-2025-04-14';
+    public const DEFAULT_MODEL_CLAUDE   = 'claude-3-5-haiku-latest';
     public const DEFAULT_LANGUAGE       = 'ja';
     public const DEFAULT_PROVIDER       = 'gemini';
 
@@ -29,21 +30,25 @@ class Constants {
     public const AVAILABLE_PROVIDERS = [
         'gemini' => 'Google Gemini',
         'openai' => 'OpenAI',
-        // 'claude' => 'Anthropic Claude', // Future support
+        'claude' => 'Anthropic Claude',
     ];
 
     // Available AI models (based on https://ai.google.dev/gemini-api/docs/models)
     public const AVAILABLE_MODELS = [
         'gemini' => [
-            'gemini-2.5-pro'                           => 'Gemini 2.5 Pro (最高性能・思考機能)',
-            'gemini-2.5-flash'                         => 'Gemini 2.5 Flash (バランス型・思考機能)',
             'gemini-2.5-flash-lite-preview-06-17'     => 'Gemini 2.5 Flash-Lite (コスト効率・高スループット)',
+            'gemini-2.5-flash'                         => 'Gemini 2.5 Flash (バランス型・思考機能)',
             'gemini-2.0-flash'                         => 'Gemini 2.0 Flash (次世代・リアルタイム)',
             'gemini-2.0-flash-lite'                    => 'Gemini 2.0 Flash-Lite (コスト効率・低レイテンシ)',
         ],
         'openai' => [
+            'o4-mini-2025-04-16' => 'GPT-o4 mini',
             'gpt-4.1-mini-2025-04-14' => 'GPT-4.1 mini',
-            'gpt-4.1-nano-2025-04-14' => 'GPT-4.1 nano',
+        ],
+        'claude' => [
+            'claude-3-7-sonnet-latest' => 'Claude 3.7 Sonnet (最新・最高性能)',
+            'claude-3-5-sonnet-latest' => 'Claude 3.5 Sonnet (高性能)',
+            'claude-3-5-haiku-latest' => 'Claude 3.5 Haiku (高速・コスト効率)',
         ],
     ];
 

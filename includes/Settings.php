@@ -104,6 +104,12 @@ class Settings {
             __( '%s で取得した API キーを入力してください。', Constants::TEXT_DOMAIN ),
             '<a href="https://aistudio.google.com/app/apikey?hl=ja" target="_blank" rel="noopener noreferrer">Google AI Studio</a>'
         );
+        } elseif ( 'claude' === $provider ) {
+            echo sprintf(
+                /* translators: %s: Anthropic Console URL */
+                __( '%s で取得した API キーを入力してください。', Constants::TEXT_DOMAIN ),
+                '<a href="https://console.anthropic.com/" target="_blank" rel="noopener noreferrer">Anthropic Console</a>'
+            );
         } else {
             echo sprintf(
                 /* translators: %s: OpenAI Platform URL */
