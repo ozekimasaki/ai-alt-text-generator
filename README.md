@@ -1,13 +1,13 @@
-# AI Alt Text Generator
+# AI Alt Text Generator for WordPress
 
-AI を用いて、WordPress にアップロードされた画像の代替テキスト（alt属性）を自動で生成するプラグインです。
+AI を用いて、WordPress にアップロードされた画像の代替テキスト（alt属性）を自動で生成するプラグインです。Google Gemini や OpenAI の最新の画像認識モデルを活用し、アクセシビリティの向上をサポートします。
 
-## 主な機能
+## ✨ 主な機能
 
 -   **マルチプロバイダー対応**:
     -   Google Gemini
     -   OpenAI
--   **最新AIモデルの利用**: 各プロバイダーの高性能な画像認識モデルに対応しています。
+-   **最新AIモデルの利用**: 各プロバイダーが提供する高性能な画像認識モデルを選択できます。
 -   **簡単な操作**:
     -   メディアライブラリの画像リストや、画像詳細画面からワンクリックで代替テキストを生成できます。
     -   すでに代替テキストが存在する場合でも、「再生成」ボタンで内容を更新できます。
@@ -15,51 +15,61 @@ AI を用いて、WordPress にアップロードされた画像の代替テキ�
 -   **柔軟な設定**:
     -   使用するAIプロバイダー、モデル、APIキーをWordPressの管理画面から簡単に設定・変更できます。
 
-## 対応AIモデル
+## ✅ 要件
 
-### Google Gemini
-
--   Gemini 2.5 Pro
--   Gemini 2.5 Flash
--   Gemini 2.5 Flash-Lite
--   Gemini 2.0 Flash
--   Gemini 2.0 Flash-Lite
-
-### OpenAI
-
--   GPT-4.1 mini
--   GPT-4.1 nano
-
-## 使い方
-
-1.  **インストールと有効化**:
-    -   このリポジトリをダウンロードし、WordPressの `wp-content/plugins` ディレクトリにアップロードして有効化します。
-    -   `composer install` を実行して、必要なライブラリをインストールしてください。
-2.  **APIキーの設定**:
-    -   WordPressの管理画面で `設定 > AI Alt Text` に移動します。
-    -   使用したい「AI プロバイダー」を選択します。（選択するとページがリロードされ、対応する設定項目が表示されます）
-    -   取得したAPIキーを入力し、「変更を保存」ボタンをクリックします。
-3.  **代替テキストの生成**:
-    -   `メディア > ライブラリ` を開きます。
-    -   代替テキストを生成したい画像の横にある「AIで代替テキスト生成」または「AIで代替テキスト再生成」ボタンをクリックします。
-    -   画像の編集画面からも同様に生成できます。
-
-## 開発者向け
-
-### 必須要件
-
+-   WordPress 5.0 以上
 -   PHP 7.4 以上
+-   **Composer**: PHPの依存関係を管理するために必須です。
 
-### 依存パッケージのインストール
+## 🚀 インストール
 
-```bash
-composer install
-```
+1.  **リポジトリをクローン**:
+    お使いのWordPress環境の `wp-content/plugins` ディレクトリに、このリポジトリをクローンします。
+    ```bash
+    cd /path/to/your/wordpress/wp-content/plugins
+    git clone https://github.com/ozekimasaki/ai-alt-text-generator.git
+    ```
+
+2.  **依存関係をインストール**:
+    プラグインのディレクトリに移動し、`Composer` を使って必要なライブラリをインストールします。
+    ```bash
+    cd ai-alt-text-generator
+    composer install
+    ```
+
+3.  **プラグインを有効化**:
+    WordPressの管理画面にログインし、「プラグイン」メニューから「AI Alt Text Generator」を有効化してください。
+
+## 🔧 設定
+
+1.  WordPress管理画面の `設定 > AI Alt Text` に移動します。
+2.  **AI プロバイダーの選択**:
+    -   使用したいAIサービス（`Google Gemini` または `OpenAI`）を選択します。
+    -   **注意**: プロバイダーを選択するとページが一度リロードされ、選択したプロバイダーに応じた設定項目が表示されます。
+3.  **APIキーの入力**:
+    -   各サービスの公式サイトで取得したAPIキーを入力してください。
+        -   **Google Gemini**: [Google AI Studio](https://aistudio.google.com/app/apikey?hl=ja)
+        -   **OpenAI**: [OpenAI Platform](https://platform.openai.com/api-keys)
+4.  **モデルの選択**:
+    -   代替テキスト生成に使用したいAIモデルを選択します。
+5.  **設定を保存**:
+    -   「変更を保存」ボタンをクリックします。
+
+## 💡 使い方
+
+設定完了後、`メディア > ライブラリ` を開きます。
+代替テキストを生成したい画像の横、または画像の詳細編集画面に表示される **「AIで代替テキスト生成」** または **「AIで代替テキスト再生成」** ボタンをクリックするだけで、自動的に代替テキストが入力されます。
+
+## 👨‍💻 開発者向け
 
 ### テストの実行
 
-PHPUnitを使用した単体テストが用意されています。
+PHPUnitを使用した単体テストが用意されています。プロジェクトのルートディレクトリで以下のコマンドを実行してください。
 
 ```bash
 composer test
-``` 
+```
+
+## 📜 ライセンス
+
+[GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html) 
