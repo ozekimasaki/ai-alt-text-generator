@@ -1,1 +1,0 @@
-{"version":1,"defects":{"AiAltText\\Tests\\Unit\\ConfigTest::test_get_provider_returns_default_when_no_option_is_set":8},"times":{"AiAltText\\Tests\\Unit\\ConfigTest::test_get_provider_returns_default_when_no_option_is_set":0.006}}
