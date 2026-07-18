@@ -15,12 +15,21 @@ AI を用いて、WordPress にアップロードされた画像の代替テキ�
 -   **言語選択**: 生成する代替テキストの言語を、サイトの言語設定とは別に指定可能です。
 -   **柔軟な設定**:
     -   使用するAIプロバイダー、モデル、APIキーをWordPressの管理画面から簡単に設定・変更できます。
+    -   代替テキストの生成言語は、日本語・英語・中国語・韓国語・フランス語・ドイツ語から選択できます（`設定 > AI Alt Text`）。
 
 ## ✅ 要件
 
 -   WordPress 5.0 以上
--   PHP 7.4 以上
+-   PHP 7.4 以上（`composer.json` の `require` に準拠）
 -   **Composer**: PHPの依存関係を管理するために必須です。
+
+各プロバイダーで既定として使用されるモデルは以下のとおりです（管理画面から変更可能）。
+
+| プロバイダー | 既定モデル |
+| --- | --- |
+| Google Gemini | `models/gemini-2.5-flash-lite-preview-06-17` |
+| OpenAI | `gpt-4.1-mini-2025-04-14` |
+| Anthropic Claude | `claude-3-5-haiku-latest` |
 
 ## 🚀 インストール
 
@@ -62,15 +71,47 @@ AI を用いて、WordPress にアップロードされた画像の代替テキ�
 設定完了後、`メディア > ライブラリ` を開きます。
 代替テキストを生成したい画像の横、または画像の詳細編集画面に表示される **「AIで代替テキスト生成」** または **「AIで代替テキスト再生成」** ボタンをクリックするだけで、自動的に代替テキストが入力されます。
 
+## 🗂 ディレクトリ構成
+
+```
+ai-alt-text-generator/
+├── ai-alt-text-generator.php   # プラグインのエントリポイント（ヘッダー・オートロード・ブートストラップ）
+├── includes/                   # プラグイン本体（PSR-4: AiAltText\ 名前空間）
+│   ├── Plugin.php              # コアクラス。フック登録・管理画面連携・生成ボタン追加
+│   ├── Container.php           # 簡易 DI コンテナ（サービス登録・取得）
+│   ├── Config.php              # オプション取得とプロバイダー依存の設定解決
+│   ├── Constants.php           # オプション名・既定モデル・対応言語などの定数
+│   ├── Settings.php            # 設定ページ（設定 > AI Alt Text）の描画と登録
+│   ├── AjaxController.php       # Ajax エンドポイント（単一画像の生成）
+│   ├── AIProviderInterface.php # AI プロバイダー共通インターフェース
+│   ├── GeminiProvider.php      # Google Gemini 実装
+│   ├── OpenAIProvider.php      # OpenAI 実装
+│   ├── ClaudeProvider.php      # Anthropic Claude 実装
+│   └── Logger.php              # ロギングと WP_Error 生成のヘルパー
+├── assets/js/admin.js          # メディア画面の生成ボタン用スクリプト
+├── tests/                      # PHPUnit テスト（bootstrap で WP 関数をモック）
+├── composer.json               # 依存関係・オートロード・スクリプト定義
+└── phpunit.xml.dist            # PHPUnit 設定
+```
+
 ## 👨‍💻 開発者向け
+
+### アーキテクチャ概要
+
+-   `AiAltText\Plugin::init()` を `plugins_loaded` フックで起動し、`Container` にサービスを登録します。
+-   AI プロバイダーは `AIProviderInterface` を実装し、`Config::get_provider_class()` が選択中のプロバイダークラスを解決します。
+-   代替テキストの生成は `admin-ajax.php` 経由（アクション `ai_generate_alt`）で単一画像に対して実行されます。
 
 ### テストの実行
 
-PHPUnitを使用した単体テストが用意されています。プロジェクトのルートディレクトリで以下のコマンドを実行してください。
+PHPUnitを使用した単体テストが用意されています。まず `composer install` で依存関係を導入し、プロジェクトのルートディレクトリで以下のコマンドを実行してください。
 
 ```bash
+composer install
 composer test
 ```
+
+`composer test` は `vendor/bin/phpunit` を実行します（`phpunit.xml.dist` の設定を使用）。
 
 ## 📜 ライセンス
 
